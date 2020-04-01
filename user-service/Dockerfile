@@ -9,12 +9,12 @@ WORKDIR /app
 RUN apk add --update \
      bash \
      curl \
-     py-mysqldb \
+     mariadb-client \
      gcc \
      libc-dev \
      mariadb-dev \
      nodejs \
-     npm -y \
+     npm \
   && pip install -U "pip<20" setuptools \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
@@ -25,4 +25,3 @@ RUN npm install
 COPY ./app /app
 
 CMD ["python", "app.py"]
-

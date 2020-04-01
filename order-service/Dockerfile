@@ -9,7 +9,7 @@ WORKDIR /app
 RUN apk add --update \
      bash \
      curl \
-     py-mysqldb \
+     mariadb-client \
      gcc \
      libc-dev \
      mariadb-dev \
@@ -25,4 +25,3 @@ RUN npm install
 COPY ./app /app
 
 CMD ["python", "app.py"]
-

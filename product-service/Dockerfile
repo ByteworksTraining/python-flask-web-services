@@ -7,7 +7,7 @@ COPY ./app/requirements.txt /app/requirements.txt
 WORKDIR /app
 
 RUN apk add --update \
-    py-mysqldb \
+    mariadb-client \
     gcc \
     libc-dev \
     mariadb-dev \
