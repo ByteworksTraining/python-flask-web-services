@@ -26,11 +26,11 @@ services:
 
   product:
     build:
-      context: ../product_service.git/
+      context: ../product-service/
     ports:
       - 8081:5000
     volumes:
-      - ../product_service.git/app:/app
+      - ../product-service/app:/app
       - product-node-modules:/app/node_modules
     links:
       - product_db
@@ -53,11 +53,11 @@ services:
 
   user:
     build:
-      context: ../user_service.git/
+      context: ../user-service/
     ports:
       - 8082:5000
     volumes:
-      - ../user_service.git/app:/app
+      - ../user-service/app:/app
       - user-node-modules:/app/node_modules
     depends_on:
       - user_db
@@ -76,14 +76,13 @@ services:
     networks:
       - order-network
 
-
   order:
     build:
-      context: ../order_service.git/
+      context: ../order-service/
     ports:
       - 8083:5000
     volumes:
-      - ../order_service.git/app:/app
+      - ../order-service/app:/app
       - order-node-modules:/app/node_modules
     depends_on:
       - order_db

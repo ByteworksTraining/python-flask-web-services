@@ -15,7 +15,7 @@ RUN apk add --update \
      mariadb-dev \
      nodejs \
      npm -y \
-  && pip install --upgrade pip  \
+  && pip install -U "pip<20" setuptools \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
 
