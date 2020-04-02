@@ -41,7 +41,7 @@ services:
       - order-network
 
   product_db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     volumes:
       - product-db-data:/var/lib/mysql
     environment:
@@ -66,7 +66,7 @@ services:
       - order-network
 
   user_db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     volumes:
       - user-db-data:/var/lib/mysql
     environment:
@@ -91,7 +91,7 @@ services:
       - order-network
 
   order_db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     volumes:
       - order-db-data:/var/lib/mysql
     environment:

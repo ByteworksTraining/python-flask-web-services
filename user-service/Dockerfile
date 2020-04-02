@@ -1,5 +1,8 @@
 FROM python:3-alpine
 
+ARG DB_CONNECTION
+ENV DB_CONNECTION=$DB_CONNECTION
+
 MAINTAINER Peter Fisher
 
 COPY ./app/requirements.txt /app/requirements.txt
