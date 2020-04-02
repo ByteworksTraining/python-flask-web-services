@@ -1,6 +1,7 @@
 **/*.idea
 venv/*
 env/
+lib/
 **/*.pytest_cache
 **/.DS_Store
 app/node_modules/*
