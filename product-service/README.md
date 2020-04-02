@@ -8,5 +8,5 @@ docker-compose up
 ## Test locally
 
 ```shell script
-http://localhost/api/product/docs.json
+http://localhost:8081/api/product/docs.json
 ```

@@ -44,7 +44,7 @@ $ eval $(docker-machine env packt-order-management)
 Get the IP of the machine
 ```
 $ docker-machine ip packt-order-management
-192.168.99.100
+192.168.1.180
 ```
 
 ## Docker Compose
