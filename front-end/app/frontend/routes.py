@@ -8,7 +8,6 @@ from .api.OrderClient import OrderClient
 from .api.ProductClient import ProductClient
 
 
-# Home page
 @frontend_blueprint.route('/', methods=['GET'])
 def home():
     # session.clear()
@@ -24,7 +23,6 @@ def home():
         }
 
     return render_template('home/index.html', products=products)
-
 
 # Login
 @frontend_blueprint.route('/login', methods=['GET', 'POST'])
