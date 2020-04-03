@@ -9,7 +9,7 @@ WORKDIR /app
 RUN apk add --update \
      bash \
      curl \
-     mariadb-client \
+     py3-pymysql \
      gcc \
      libc-dev \
      mariadb-dev \
