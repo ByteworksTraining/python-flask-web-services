@@ -14,13 +14,12 @@ WORKDIR /app
 RUN apk add --update \
      bash \
      curl \
-     py3-pymysql \
+     mysql-client \
      gcc \
      libc-dev \
      mariadb-dev \
      nodejs \
      npm \
-  && pip install -U "pip<20" setuptools \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/* \
   && mkdir -p $LOG_PATH

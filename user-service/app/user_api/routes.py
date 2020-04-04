@@ -1,7 +1,9 @@
-from flask import make_response, request, json, jsonify
+from flask import make_response, request, json, jsonify, abort
 import logging
 from flask_login import current_user, login_user, logout_user, login_required
 from passlib.hash import sha256_crypt
+from werkzeug.utils import escape
+
 from . import user_api_blueprint
 from models import db, User
 
@@ -74,14 +76,22 @@ def get_user():
 
     return make_response(jsonify({'message': 'Not logged in'}), 401)
 
+@user_api_blueprint.route('/api/users/emails/<email>', methods=['GET'])
+def get_user_by_email(email):
+    logging.debug(f'get_user_by_email({email})')
+    data = User.query.filter_by(email=email).first()
+    if data is None:
+        abort(404)
+
+    return make_response(jsonify(data.to_json()))
 
 @user_api_blueprint.route('/api/user/create', methods=['POST'])
 def post_register():
     logging.debug('post_register()')
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
+    first_name = escape(request.form['first_name'])
+    last_name = escape(request.form['last_name'])
     email = request.form['email']
-    username = request.form['username']
+    username = escape(request.form['username'])
 
     password = sha256_crypt.hash((str(request.form['password'])))
 

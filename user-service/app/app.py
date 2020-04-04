@@ -19,6 +19,7 @@ else:
     path = log_name
 logging.basicConfig(filename=path, level=logging.DEBUG)
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config.update(
     {'SECRET_KEY': "powerful secretkey", 'SQLALCHEMY_DATABASE_URI': 'mysql+mysqlconnector://root:test@user_db/user'})
 
