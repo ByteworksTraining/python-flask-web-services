@@ -1,4 +1,5 @@
 from flask import session
+import logging
 import requests
 
 
@@ -6,6 +7,7 @@ class OrderClient:
 
     @staticmethod
     def get_order():
+        logging.debug('get_order()')
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
@@ -16,7 +18,7 @@ class OrderClient:
 
     @staticmethod
     def update_order(items):
-
+        logging.debug(f'update_order({items})')
         url = 'http://order:5000/api/order/update'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
@@ -29,6 +31,7 @@ class OrderClient:
 
     @staticmethod
     def post_add_to_cart(product_id, qty=1):
+        logging.debug(f'post_add_to_cart({product_id},{qty})')
         payload = {
             'product_id': product_id,
             'qty': qty,
@@ -45,6 +48,7 @@ class OrderClient:
 
     @staticmethod
     def post_checkout():
+        logging.debug('post_checkout()')
         url = 'http://order:5000/api/order/checkout'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
@@ -55,6 +59,7 @@ class OrderClient:
 
     @staticmethod
     def get_order_from_session():
+        logging.debug('get_order_from_session()')
         default_order = {
             'items': {},
             'total': 0,

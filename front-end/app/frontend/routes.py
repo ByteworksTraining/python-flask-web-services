@@ -1,4 +1,5 @@
 from flask import render_template, session, redirect, url_for, flash, request
+import logging
 import requests
 from flask_login import current_user
 from . import forms
@@ -10,6 +11,7 @@ from .api.ProductClient import ProductClient
 
 @frontend_blueprint.route('/', methods=['GET'])
 def home():
+    logging.debug('home()')
     # session.clear()
     if current_user.is_authenticated:
         # order = order
@@ -27,6 +29,7 @@ def home():
 # Login
 @frontend_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    logging.debug('login()')
     if current_user.is_authenticated:
         return redirect(url_for('frontend.home'))
 
@@ -59,7 +62,7 @@ def login():
 # Register new customer
 @frontend_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-
+    logging.debug('register()')
     form = forms.RegisterForm(request.form)
     if request.method == "POST":
         if form.validate_on_submit():
@@ -88,6 +91,7 @@ def register():
 # Logout
 @frontend_blueprint.route('/logout', methods=['GET'])
 def logout():
+    logging.debug('logout()')
     session.clear()
     return redirect(url_for('frontend.home'))
 
@@ -95,7 +99,7 @@ def logout():
 # Product page
 @frontend_blueprint.route('/product/<slug>', methods=['GET', 'POST'])
 def product(slug):
-
+    logging.debug(f'product({slug})')
     # Get the product
     response = ProductClient.get_product(slug)
     item = response['result']
@@ -121,7 +125,7 @@ def product(slug):
 # Order summary  page
 @frontend_blueprint.route('/checkout', methods=['GET'])
 def summary():
-
+    logging.debug('summary()')
     if 'user' not in session:
         flash('Please login', 'error')
         return redirect(url_for('frontend.login'))
@@ -144,7 +148,7 @@ def summary():
 # Order thank you
 @frontend_blueprint.route('/order/thank-you', methods=['GET'])
 def thank_you():
-
+    logging.debug('thank_you()')
     if 'user' not in session:
         flash('Please login', 'error')
         return redirect(url_for('frontend.login'))

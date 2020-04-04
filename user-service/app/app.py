@@ -1,5 +1,6 @@
 from flask import Flask, g
-
+import logging
+import os
 from flask_login import LoginManager, user_loaded_from_header
 from user_api import user_api_blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
@@ -10,6 +11,13 @@ app = Flask(__name__)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
 
+log_name = 'user-service.log'
+path = os.getenv('LOG_PATH')
+if path:
+    path = path + log_name
+else:
+    path = log_name
+logging.basicConfig(filename=path, level=logging.DEBUG)
 
 app.config.update(
     {'SECRET_KEY': "powerful secretkey", 'SQLALCHEMY_DATABASE_URI': 'mysql+mysqlconnector://root:test@user_db/user'})

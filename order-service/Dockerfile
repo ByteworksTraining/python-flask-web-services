@@ -2,6 +2,8 @@ FROM python:3-alpine
 
 MAINTAINER Peter Fisher
 
+ENV LOG_PATH=/var/log/order-api/
+
 COPY ./app/requirements.txt /app/requirements.txt
 
 WORKDIR /app
@@ -17,7 +19,8 @@ RUN apk add --update \
      npm \
   && pip install -U "pip<20" setuptools \
   && pip install -r requirements.txt \
-  && rm -rf /var/cache/apk/*
+  && rm -rf /var/cache/apk/* \
+  && mkdir -p $LOG_PATH
 
 COPY ./app/package.json /app/package.json
 RUN npm install

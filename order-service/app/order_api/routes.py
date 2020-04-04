@@ -1,4 +1,5 @@
 from flask import jsonify,json, request, make_response
+import logging
 from . import order_api_blueprint
 from models import db, Order, OrderItem
 from .api.UserClient import UserClient
@@ -6,6 +7,7 @@ from .api.UserClient import UserClient
 
 @order_api_blueprint.route("/api/order/docs.json", methods=['GET'])
 def swagger_api_docs_yml():
+    logging.debug('swagger_api_docs_yml()')
     with open('swagger.json') as fd:
         json_data = json.load(fd)
 
@@ -14,7 +16,7 @@ def swagger_api_docs_yml():
 
 @order_api_blueprint.route('/api/orders', methods=['GET'])
 def orders():
-
+    logging.debug('orders()')
     items = []
     for row in Order.query.all():
         items.append(row.to_json())
@@ -26,7 +28,7 @@ def orders():
 
 @order_api_blueprint.route('/api/order/add-item', methods=['POST'])
 def order_add_item():
-
+    logging.debug('order_add_item()')
     api_key = request.headers.get('Authorization')
     response = UserClient.get_user(api_key)
 
@@ -74,6 +76,7 @@ def order_add_item():
 
 @order_api_blueprint.route('/api/order', methods=['GET'])
 def order():
+    logging.debug('order()')
     api_key = request.headers.get('Authorization')
     response = UserClient.get_user(api_key)
 
@@ -94,6 +97,7 @@ def order():
 
 @order_api_blueprint.route('/api/order/checkout', methods=['POST'])
 def checkout():
+    logging.debug('checkout()')
     api_key = request.headers.get('Authorization')
     response = UserClient.get_user(api_key)
 

@@ -1,4 +1,5 @@
 from flask import make_response, request, json, jsonify
+import logging
 from flask_login import current_user, login_user, logout_user, login_required
 from passlib.hash import sha256_crypt
 from . import user_api_blueprint
@@ -7,6 +8,7 @@ from models import db, User
 
 @user_api_blueprint.route("/api/user/docs.json", methods=['GET'])
 def swagger_api_docs_yml():
+    logging.debug('swagger_api_docs_yml()')
     with open('swagger.json') as fd:
         json_data = json.load(fd)
 
@@ -15,6 +17,7 @@ def swagger_api_docs_yml():
 
 @user_api_blueprint.route('/api/users', methods=['GET'])
 def get_users():
+    logging.debug('get_users()')
     data = []
     for row in User.query.all():
         data.append(row.to_json())
@@ -26,7 +29,7 @@ def get_users():
 
 @user_api_blueprint.route('/api/user/login', methods=['POST'])
 def post_login():
-
+    logging.debug('post_login()')
     username = request.form['username']
     user = User.query.filter_by(username=username).first()
     if user:
@@ -42,7 +45,7 @@ def post_login():
 
 @user_api_blueprint.route('/api/user/<username>/exists', methods=['GET'])
 def get_username(username):
-
+    logging.debug(f'get_username({username})')
     item = User.query.filter_by(username=username).first()
     if item is not None:
         response = jsonify({'result': True})
@@ -54,7 +57,7 @@ def get_username(username):
 
 @user_api_blueprint.route('/api/user/logout', methods=['POST'])
 def post_logout():
-
+    logging.debug('post_logout()')
     if current_user.is_authenticated:
         logout_user()
         return make_response(jsonify({'message': 'You are no longer logged in'}))
@@ -65,7 +68,7 @@ def post_logout():
 @login_required
 @user_api_blueprint.route('/api/user', methods=['GET'])
 def get_user():
-
+    logging.debug('get_user()')
     if current_user.is_authenticated:
         return make_response(jsonify({'result': current_user.to_json()}))
 
@@ -74,7 +77,7 @@ def get_user():
 
 @user_api_blueprint.route('/api/user/create', methods=['POST'])
 def post_register():
-
+    logging.debug('post_register()')
     first_name = request.form['first_name']
     last_name = request.form['last_name']
     email = request.form['email']

@@ -1,15 +1,22 @@
 from flask import Flask
+import os
+import logging
 from order_api import order_api_blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 import models
 
 app = Flask(__name__)
 
-app.config.update(dict(
-    SECRET_KEY="powerful secretkey",
-    WTF_CSRF_SECRET_KEY="a csrf secret key",
-    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@order_db/order',
-))
+log_name = 'order-service.log'
+path = os.getenv('LOG_PATH')
+if path:
+    path = path + log_name
+else:
+    path = log_name
+logging.basicConfig(filename=path, level=logging.DEBUG)
+
+app.config.update({'SECRET_KEY': "powerful secretkey", 'WTF_CSRF_SECRET_KEY': "a csrf secret key",
+                   'SQLALCHEMY_DATABASE_URI': 'mysql+mysqlconnector://root:test@order_db/order'})
 
 models.init_app(app)
 models.create_tables(app)

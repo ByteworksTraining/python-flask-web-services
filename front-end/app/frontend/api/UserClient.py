@@ -1,11 +1,14 @@
 from flask import session
+import logging
 import requests
 
 
 class UserClient:
 
+
     @staticmethod
     def post_login(form):
+        logging.debug('post_login()')
         api_key = False
         payload = {
             'username': form.username.data,
@@ -21,12 +24,14 @@ class UserClient:
 
     @staticmethod
     def does_exist(username):
+        logging.debug(f'does_exist({username})')
         url = 'http://user:5000/api/user/'+username+'/exist'
         response = requests.request("GET", url=url)
         return response.status_code == 200
 
     @staticmethod
     def post_user_create(form):
+        logging.debug('post_user_create()')
         user = False
         payload = {
             'email': form.email.data,
@@ -43,6 +48,7 @@ class UserClient:
 
     @staticmethod
     def get_user():
+        logging.debug(f'post_user_create()')
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }

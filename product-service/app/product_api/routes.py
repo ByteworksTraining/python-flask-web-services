@@ -1,4 +1,5 @@
 from flask import json, jsonify, request
+import logging
 from . import product_api_blueprint
 from models import db, Product
 

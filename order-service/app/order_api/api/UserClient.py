@@ -1,4 +1,4 @@
-from flask import session
+import logging
 import requests
 
 
@@ -6,6 +6,7 @@ class UserClient:
 
     @staticmethod
     def get_user(api_key):
+        logging.debug(f'get_user({api_key})')
         headers = {
             'Authorization': api_key
         }

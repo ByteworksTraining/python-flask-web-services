@@ -4,3 +4,4 @@
 **/*.pytest_cache
 **/.DS_Store
 **/app/node_modules/*
+**/*.log
