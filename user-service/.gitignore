@@ -1,9 +1,6 @@
-**/*.idea
-venv/*
-env/
-lib/
 **/*.pytest_cache
 **/.DS_Store
 app/node_modules/*
 !app/node_modules/.gitkeep
 **/*.log
+/vevn/

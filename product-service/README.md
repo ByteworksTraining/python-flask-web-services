@@ -10,3 +10,13 @@ docker-compose up
 ```shell script
 http://localhost:8081/api/product/docs.json
 ```
+
+## Virtual Environment
+
+```shell script
+cd product-service
+source vevn/bin/activate
+pip install -r app/requirements.txt
+```
+
+Use "$ deactivate" when you are done.

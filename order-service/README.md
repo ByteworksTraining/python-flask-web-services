@@ -10,3 +10,13 @@ docker-compose up
 ```shell script
 http://localhost:8083/api/order/docs.json
 ```
+
+## Virtual Environment
+
+```shell script
+cd order-service
+source vevn/bin/activate
+pip install -r app/requirements.txt
+```
+
+Use "$ deactivate" when you are done.
