@@ -1,3 +1,7 @@
+This project is based on [Hands-on Microscervice by Peter Fisher](https://github.com/smitchell/python-flask-web-services)
+I am building on top of Peter's code to create my personal referencing implementation liek what I am used to with Spring Cloud.
+As with Peter's project, this is not meant to be production quality code, but rather it is a test bed for microservice concepts.
+
 
 # Virtual Environments
 
