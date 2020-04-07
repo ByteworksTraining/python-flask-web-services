@@ -1,8 +1,9 @@
 # Local Testing
 
-## Deploy locally
+## To run only this micro-service
 ```shell script
-docker-compose up
+docker-compose up -d
+docker-compose down -v --rmi='all'
 ```
 
 ## Test locally

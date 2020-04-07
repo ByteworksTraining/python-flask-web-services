@@ -8,9 +8,17 @@ Author: Peter Fisher
 - To install just the frontend read the [Frontend installation guide](docs/install/frontend.md)
 
 
-## To Run the Project
+## To Run only the Front End
 ```shell script
-docker-compose up -d 
+docker-compose up -d
+docker-compose down -v --rmi='all'
+```
+
+## To run all services
+```shell script
+docker-compose -f docker-compose.deploy.yml up -d
+docker-compose down -v --rmi='all'
+
 ```
 
 
