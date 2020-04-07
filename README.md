@@ -15,7 +15,7 @@ Setup a virtual environment for each service.
 
 ```shell script
 cd front-end
-python3 -m venv venv
+python3 -m venv --copies venv
 source venv/bin/activate
 pip install -r app/requirements.txt
 deactivate
@@ -26,7 +26,7 @@ cd ..
 
 ```shell script
 cd order-service
-python3 -m venv venv
+python3 -m venv --copies venv
 source venv/bin/activate
 pip install -r app/requirements.txt
 deactivate
@@ -37,7 +37,7 @@ cd ..
 
 ```shell script
 cd product-service
-python3 -m venv venv
+python3 -m venv --copies venv
 source venv/bin/activate
 pip install -r app/requirements.txt
 deactivate
@@ -48,9 +48,27 @@ cd ..
 
 ```shell script
 cd user-service
-python3 -m venv venv
+python3 -m venv --copies venv
 source venv/bin/activate
 pip install -r app/requirements.txt
 deactivate
 cd ..
 ```
+
+# PyCharm
+It is best to open each service as a separate PyCharm project.
+
+## Virtual Environments
+PyCharm should automatically detect the virtual environment create above. If not, 
+try to do that manually as shown below, but you should't have to.
+![Select exsiting virtual environment](https://github.com/smitchell/python-flask-web-services/raw/master/AddPythonVirtualEnvironment.png)
+
+If you are using PyCharm be sure to mark each app directory as a Sources Root.
+
+Right click on each of the following directories, Mark directory as --> Sources Root
+* front-end/app
+* order-service/app
+* product-service/app
+* user-service/app
+
+![Mark directory as Sources Root](https://github.com/smitchell/python-flask-web-services/raw/master/SourcesRoot.png)
