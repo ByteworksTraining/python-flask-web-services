@@ -8,7 +8,7 @@ docker-compose up
 ## Test locally
 
 ```shell script
-http://localhost:8081/api/product/docs.json
+http://localhost:8081/api/docs/
 ```
 
 ## Virtual Environment

@@ -17,7 +17,7 @@ docker-compose up -d
 * Front End - http://localhost/
   1) Register a new user
   2) Login
-* Product API - http://localhost:8081/api/product/docs.json
-* User API - http://localhost:8082/api/user/docs.json
-* Order API - http://localhost:8083/api/order/docs.json
+* Product API - http://localhost:8081/api/docs/
+* User API - http://localhost:8082/api/docs/
+* Order API - http://localhost:8083/api/docs/
  
