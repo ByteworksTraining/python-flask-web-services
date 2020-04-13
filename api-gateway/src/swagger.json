@@ -1,0 +1,29 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API Gateway for micro services",
+        "version": "1.0.0",
+        "title": "API Gateway"
+    },
+    "host": "127.0.0.1:5000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+      "/gateway/version": {
+        "get": {
+          "summary": "Get the version",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation"
+            }
+          }
+        }
+      }
+    }
+}
