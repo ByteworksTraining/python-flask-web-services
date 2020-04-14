@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask
 import logging
 import os
 from flask_login import LoginManager, user_loaded_from_header

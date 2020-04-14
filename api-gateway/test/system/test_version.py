@@ -8,4 +8,4 @@ class TestHome(BaseTest):
         with self.app() as c:
             resp = c.get('/api/gateway/version')
             self.assertEqual(resp.status_code, 200)
-            self.assertEqual(json.loads(resp.get_data()), {'version': 1.0})
+            self.assertEqual(json.loads(resp.get_data()), {'version': "1.0.0"})
