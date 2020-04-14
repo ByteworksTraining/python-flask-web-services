@@ -17,4 +17,4 @@ def swagger_api_docs_yml():
 
 @gateway_api_blueprint.route('/api/gateway/version')
 def get_version():
-    return {'version': 1.0}
+    return {'version': "1.0.0"}

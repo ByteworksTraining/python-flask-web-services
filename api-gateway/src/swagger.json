@@ -14,7 +14,7 @@
       "/gateway/version": {
         "get": {
           "summary": "Get the version",
-          "description": "",
+          "description": "Returns the gateway version.",
           "produces": [
             "application/json"
           ],
