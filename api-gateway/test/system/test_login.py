@@ -1,3 +1,4 @@
+import json
 from unittest.mock import MagicMock
 
 from flask import jsonify
@@ -19,13 +20,14 @@ class TestLogin(BaseTest):
         with self.app() as c:
             resp = c.post('/api/login')
             self.assertEqual(resp.status_code, 400)
-            self.assertEqual(resp.data.decode('utf-8'), 'Username parameter is missing')
+            self.assertEqual(resp.data.decode('utf-8'), 'Login must contain JSON')
 
     def test_post_login_no_username(self):
         with self.app() as c:
             resp = c.post('/api/login',
-                          data=dict(password='a password'),
-                          follow_redirects=True
+                          data=json.dumps(dict(password='secret')),
+                          follow_redirects=True,
+                          content_type='application/json'
                           )
             self.assertEqual(resp.status_code, 400)
             self.assertEqual(resp.data.decode('utf-8'), 'Username parameter is missing')
@@ -33,8 +35,9 @@ class TestLogin(BaseTest):
     def test_post_login_no_password(self):
         with self.app() as c:
             resp = c.post('/api/login',
-                          data=dict(username='a user id'),
-                          follow_redirects=True
+                          data=json.dumps(dict(username='my-name')),
+                          follow_redirects=True,
+                          content_type='application/json'
                           )
             self.assertEqual(resp.status_code, 400)
             self.assertEqual(resp.data.decode('utf-8'), 'Password parameter is missing')
@@ -47,7 +50,8 @@ class TestLogin(BaseTest):
             user_client.post_login = MagicMock(return_value='abcedef')
             routes.user_client = user_client
             resp = c.post('/api/login',
-                          data=dict(username='a user id', password='a password'),
-                          follow_redirects=True
+                          data=json.dumps(dict(username='my-name', password='secret')),
+                          follow_redirects=True,
+                          content_type='application/json'
                           )
             self.assertEqual(resp.status_code, 200)
