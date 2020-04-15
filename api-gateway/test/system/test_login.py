@@ -46,9 +46,6 @@ class TestLogin(BaseTest):
     def test_post_login_mocked(self, post_login_mock):
         with self.app() as c:
             post_login_mock.return_value = 'abcdefg'
-            user_client = UserClient()
-            user_client.post_login = MagicMock(return_value='abcedef')
-            routes.user_client = user_client
             resp = c.post('/api/login',
                           data=json.dumps(dict(username='my-name', password='secret')),
                           follow_redirects=True,

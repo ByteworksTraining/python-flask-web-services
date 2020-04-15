@@ -43,6 +43,33 @@ paths:
       responses:
         '200':
           description: successful operation
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /api/user/{username}/exists:
+    get:
+      summary: Checks whether a username exists
+      parameters:
+        - name: username
+          in: path
+          description: username
+          required: true
+          schema:
+            type: string
+      response:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  message:
+                    type: string
 definitions:
   Login:
     required:

@@ -28,3 +28,8 @@ def login():
         'password': password,
     }
     return UserClient.post_login(jsonify(payload))
+
+@gateway_api_blueprint.route('/api/user/<username>/exists', methods=['GET'])
+def get_username(username):
+    item = UserClient.does_exist(username)
+    return jsonify(item)
